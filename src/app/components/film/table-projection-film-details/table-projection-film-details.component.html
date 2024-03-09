@@ -1,0 +1,18 @@
+<h1>Upcoming Projections</h1>
+
+<div class="card-container">
+  <div
+    *ngFor="let projection of filmProjections"
+    (click)="navigateToProjectionDetail(projection.id)"
+    class="card"
+  >
+    <div class="card-body">
+      <h5 class="card-title">{{ projection.filmTitle }}</h5>
+      <p class="card-text"><strong>Time: </strong> {{ projection.hallName }}</p>
+      <p class="card-text">
+        <strong>Date: </strong> {{ projection.date | date : "dd-MM-yyyy" }}
+      </p>
+      <p class="card-text"><strong>Time: </strong> {{ projection.time }}</p>
+    </div>
+  </div>
+</div>

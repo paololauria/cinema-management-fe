@@ -1,0 +1,326 @@
+<body class="d-flex justify-content-center align-items-center">
+  <div class="card-body">
+    <div class="movie-container">
+      <div class="d-flex justify-content-center">
+        <h4>{{ projection?.date | date : "dd-MM-yyy" }}</h4>
+      </div>
+      <div class="d-flex justify-content-center">
+        <h4>{{ projection.time }}</h4>
+      </div>
+      <div
+        class="screen"
+        [style.background-image]="'url(' + projection.posterImage + ')'"
+        [style.background-size]="'100%'"
+        [style.background-repeat]="'no-repeat'"
+      ></div>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-warning">
+          Places Available {{ numeroPostiDisponibili }}
+        </button>
+      </div>
+
+      <div id="seats" (click)="onSeatClick($event)">
+        <div *ngFor="let row of seats; let i = index" class="row">
+          <div
+            [id]="'' + (i * hall.column + j + 1)"
+            [ngClass]="{ selected: s == 1, occupied: s == -1 }"
+            [attr.data-row]="i"
+            [attr.data-column]="j"
+            class="seat"
+            *ngFor="let s of row; let j = index"
+          ></div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <p class="text" *ngIf="numSelected">
+          Selected Seats: <span id="count">{{ numSelected }}</span
+          ><br />
+          Total Price: <span id="total">{{ displayPrice }}€</span>
+        </p>
+      </div>
+    </div>
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="checkUser()"
+      style="margin-bottom: 15px"
+    >
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-danger">
+        Maximum Number of Reservations: 9
+      </button>
+    </div>
+    <br />
+    <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>Available</small>
+      </li>
+
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="!checkUser()"
+      style="margin-bottom: 15px"
+    >
+      <button class="btn btn-primary" routerLink="/login">Login</button>
+    </div>
+  </div>
+
+  <div class="containers top-margin" id="film-details">
+    <h1 class="text-uppercase">
+      <i class="fa-solid fa-film"></i> {{ filmDetails.title }}
+    </h1>
+    <div class="card-body" *ngIf="filmDetails">
+      <div class="details bottom-margin">
+        <p><strong> Release Date:</strong> {{ filmDetails.releaseYear }}</p>
+        <p><strong>Runtime:</strong> {{ filmDetails.duration }}</p>
+        <p><strong>Plot:</strong> {{ filmDetails.description }}</p>
+        <p><strong>Director:</strong> {{ filmDetails.director }}</p>
+        <p><strong>Actors:</strong> {{ filmDetails.actors }}</p>
+
+        <button
+          class="btn btn-outline-dark"
+          style="font-size: 1rem"
+          (click)="navigateToFilmDetail(filmDetails.id)"
+        >
+          More Details
+        </button>
+        <!-- <div class="actor-container" *ngFor="let actor of filmDetails.actorDto">
+          <div>
+            <p>{{ actor.actorName }}</p>
+            <img
+              [src]="actor.actorImg"
+              alt=" {{ actor.actorImg }}"
+              class="small-rounded-image"
+            />
+            <p><i>{{actor.roleName}}</i></p>
+          </div>
+        </div> -->
+        <p></p>
+        <p>
+          <strong
+            ><i class="bi bi-info-circle"></i> Ticket Price Information</strong
+          >
+        </p>
+        <p>Standard Ticket: <strong>€10</strong></p>
+        <p>Reduced Ticket (children up to 12 years): <strong>€5</strong></p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="offcanvas offcanvas-start"
+    data-bs-scroll="true"
+    data-bs-backdrop="false"
+    tabindex="-1"
+    id="offcanvasScrolling"
+    aria-labelledby="offcanvasScrollingLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+        Colored with scrolling
+      </h5>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+  </div>
+  <div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="offcanvasWithBackdrop"
+    aria-labelledby="offcanvasWithBackdropLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">
+        CONFIRM RESERVATION
+      </h5>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <div *ngFor="let s of seatId; let i = index">
+        <div *ngIf="booleanArray[i] == true">
+          Reduced Ticket: €5
+          <p class="seat-selected text-center">{{ getCoordinate(s) }}</p>
+        </div>
+
+        <div *ngIf="booleanArray[i] != true">
+          Standard Ticket: €10
+          <p class="seat-selected text-center">{{ getCoordinate(s) }}</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div id="Checkout" class="inline">
+          <h1>Payment FAKE</h1>
+          <div class="card-row">
+            <input type="radio" name="card" id="visa" />
+            <span for="visa" class="visa"></span>
+
+            <input type="radio" name="card" id="mastercard" />
+            <span for="mastercard" class="mastercard"></span>
+
+            <input type="radio" name="card" id="amex" />
+            <span for="amex" class="amex"></span>
+          </div>
+          <form>
+            <div class="form-group">
+              <label for="PaymentAmount">Total Amount to Pay</label>
+              <div class="amount-placeholder">
+                <span>€</span>
+                <span>{{ this.totalPrice }}</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label or="NameOnCard">Fullname</label>
+              <p>{{ user?.firstname }} {{ user?.lastname }}</p>
+            </div>
+            <!-- <div class="form-group">
+              <label for="CreditCardNumber">Credit Card Number:</label>
+              <input class="input-container" type="number" />
+            </div>
+            <div class="form-group">
+              <label for="ExpiryDate">Expiration Date:</label>
+              <input class="input-container" type="month" />
+            </div>
+            <div class="form-group">
+              <label for="SecurityCode">Security Code:</label>
+              <input class="input-container" type="password" />
+            </div> -->
+
+            <button
+              class="btn btn-primary"
+              *ngIf="seatId.length != 0"
+              (click)="createReservation()"
+            >
+              <span class="align-middle">Pay</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="space"></div>
+      <button
+        class="btn btn-secondary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+      >
+        Back to Cart <i class="bi bi-arrow-bar-right"></i>
+      </button>
+    </div>
+  </div>
+  <div
+    class="offcanvas offcanvas-start"
+    data-bs-scroll="true"
+    tabindex="-1"
+    id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+        Backdropped with scrolling
+      </h5>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>
+
+  <div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel"
+  >
+    <div class="offcanvas-header">
+      <h1 id="offcanvasRightLabel">Cart <i class="bi bi-cart4"></i></h1>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="input-group mb-3">
+        <h3></h3>
+
+        <h3>Selected Seats:</h3>
+        <div *ngFor="let s of this.seatId; let i = index">
+          <div class="seat-selected">
+            <p class="text-center">{{ getCoordinate(s) }}</p>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-success"
+              *ngIf="!booleanArray[i]"
+              (click)="setDiscount($event, i)"
+            >
+              <i class="bi bi-plus-circle"></i>Apply children discount
+            </button>
+          </div>
+          <button
+            class="btn btn-danger"
+            *ngIf="booleanArray[i]"
+            (click)="reverseSetDiscount($event, i)"
+          >
+            <i class="bi bi-dash-circle"></i> Remove children discount
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center" style="margin-bottom: 20px">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBackdrop"
+        aria-controls="offcanvasWithBackdrop"
+      >
+        Proceed to Payment
+      </button>
+    </div>
+  </div>
+
+  <body></body>
+</body>

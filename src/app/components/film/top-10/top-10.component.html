@@ -1,0 +1,12 @@
+<h2 class="text-center">THE USER RANKING</h2>
+<div class="wrapper">
+  <div class="item" *ngFor="let film of top10Films; let i = index">
+    <img
+      (click)="navigateToFilmDetail(film.id)"
+      [src]="film.posterImage"
+      class="card-img-small"
+      alt=""
+    />
+    <div>{{ i + 1 }}</div>
+  </div>
+</div>

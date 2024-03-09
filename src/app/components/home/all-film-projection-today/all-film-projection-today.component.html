@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 text-center">
+      <h2 class="strikethrough">IN ALL OUR HALLS TODAY</h2>
+    </div>
+
+    <div class="col-12">
+      <div class="d-flex overflow-auto">
+        <div
+          *ngFor="let projection of filmsProjectionToday"
+          class="col-md-4 mb-3 d-flex justify-content-center card-container"
+        >
+          <div
+            class="card h-100"
+            style="width: 18rem"
+            (click)="onFilmClick(projection.id)"
+          >
+            <img
+              [src]="projection.posterImage"
+              class="card-img-top mx-auto d-block"
+              style="width: 100%; height: 400px"
+              alt=""
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ projection.filmTitle }}</h5>
+              <div class="star">
+                <p style="font-size: 15px">
+                  {{ projection.averageRating
+                  }}<i
+                    class="bi bi-star-fill"
+                    style="color: orange; font-size: 17px"
+                  ></i>
+                </p>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  style="
+                    width: 200px;
+                    color: black;
+                    font-size: 30px;
+                    font-family: 'Protest Strike', sans-serif;
+                  "
+                >
+                  {{ projection.time }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="filmsProjectionToday.length === 0"
+        class="col-12 text-center mt-3"
+      >
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onGenerateProjectionsClick()"
+        >
+          Generate Projections
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

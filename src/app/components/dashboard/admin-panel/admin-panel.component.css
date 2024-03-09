@@ -1,0 +1,31 @@
+body,
+html {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  background: #1d5479;
+  text-align: left;
+  font-family: "Roboto";
+  display: block;
+  justify-content: left;
+  align-items: center;
+}
+
+.announcement-text {
+  font-size: 1.5rem;
+  font-family: "Bayon", sans-serif;
+}
+h1 {
+  font-size: 100px;
+  font-family: "Bayon", sans-serif;
+  color: #f79420;
+  padding-bottom: 1.5%;
+}
+.tagline {
+  color: black;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.flip {
+  color: #fec236;
+}

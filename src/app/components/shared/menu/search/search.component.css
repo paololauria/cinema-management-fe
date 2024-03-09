@@ -1,0 +1,75 @@
+* {
+  font-family: "Protest Strike", sans-serif;
+  color: black;
+}
+
+body {
+  background: #f79420;
+  padding: 0 20px;
+}
+
+::selection {
+  color: black;
+  background: #f79420;
+}
+
+.container .searchInput {
+  position: relative;
+}
+
+.searchInput input {
+  height: 55px;
+  width: 100%;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 0 10px 0 10px;
+  font-size: 18px;
+}
+
+.searchInput.active input {
+  border-radius: 12px 12px 0 0;
+}
+
+.searchInput .resultBox {
+  font-size: 24px;
+  border-radius: 12px;
+  position: absolute;
+  left: 0;
+  width: 96%;
+  background: #fff;
+  max-height: 280px;
+  overflow-y: auto;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.resultBox ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resultBox li {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.resultBox li:hover {
+  background: #f79420;
+}
+
+.searchInput .icon {
+  border-radius: 12px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #644bff;
+  cursor: pointer;
+}

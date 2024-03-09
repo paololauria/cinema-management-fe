@@ -1,0 +1,122 @@
+<link
+  href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+
+<div class="col-md-12 text-center"></div>
+
+<div class="row d-flex justify-content-center">
+  <div class="tagline">
+    <h1 class="text-center">Manage Your Cinema</h1>
+  </div>
+  <div class="col-md-3 d-flex justify-content-center align-items-center">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3171/3171727.png"
+              alt=""
+              style="width: 100px"
+            />
+          </div>
+          <div class="col-xs-6 text-right">
+            <p class="announcement-heading">&nbsp;</p>
+            <p class="announcement-text">Movie Management</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-warning" (click)="showFilmControl()">
+        <div class="panel-footer announcement-bottom">
+          <div class="row">
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6 text-right">
+              <i
+                *ngIf="isFilmControlVisible"
+                class="fa fa-arrow-circle-down"
+              ></i>
+              <i
+                *ngIf="!isFilmControlVisible"
+                class="fa fa-arrow-circle-right"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 d-flex justify-content-center align-items-center">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2798/2798007.png"
+              alt=""
+              style="width: 100px"
+            />
+          </div>
+          <div class="col-xs-6 text-right">
+            <p class="announcement-heading">&nbsp;</p>
+            <p class="announcement-text">Projection Management</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-warning" (click)="showProjectionControl()">
+        <div class="panel-footer announcement-bottom">
+          <div class="row">
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6 text-right">
+              <i
+                *ngIf="isProjectionControlVisible"
+                class="fa fa-arrow-circle-down"
+              ></i>
+              <i
+                *ngIf="!isProjectionControlVisible"
+                class="fa fa-arrow-circle-right"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 d-flex justify-content-center align-items-center">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4312/4312094.png"
+              alt=""
+              style="width: 100px"
+            />
+          </div>
+          <div class="col-xs-6 text-right">
+            <p class="announcement-heading">&nbsp;</p>
+            <p class="announcement-text">User Management</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-warning" (click)="showUserControl()">
+        <div class="panel-footer announcement-bottom">
+          <div class="row">
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6 text-right">
+              <i
+                *ngIf="isUserControlVisible"
+                class="fa fa-arrow-circle-down"
+              ></i>
+              <i
+                *ngIf="!isUserControlVisible"
+                class="fa fa-arrow-circle-right"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,8 @@
+<app-all-film-projection-today 
+[filmsProjectionToday]="filmProjectionToday"
+(filmClicked)="navigateToProjectionDetail($event)"
+(generateProjections)="generateProjections()"></app-all-film-projection-today>
+<app-hall-projection-today *ngFor="let hallNumber of [1, 2, 3, 4]" [hallNumber]="hallNumber"></app-hall-projection-today>
+<app-faq></app-faq>
+<app-partners></app-partners>
+

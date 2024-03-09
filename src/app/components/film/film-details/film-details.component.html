@@ -1,0 +1,169 @@
+<div *ngIf="filmDetails" class="container">
+  <div
+    class="card"
+    style="
+      max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    "
+  >
+    <div class="card-body" style="flex: 1">
+      <h2>{{ filmDetails.title }}</h2>
+      <div class="card-body">
+        <img [src]="filmDetails.posterImage" alt="" class="" />
+      </div>
+      <p><strong>Director:</strong> {{ filmDetails.director }}</p>
+      <p><strong>Release Date:</strong> {{ filmDetails.releaseYear }}</p>
+      <p><strong>Plot:</strong> {{ movieDetails?.Plot }}</p>
+      <p><strong>Actors:</strong> {{ filmDetails.actors }}</p>
+      <p><strong>BoxOffice:</strong> {{ filmDetails.boxOffice }}</p>
+      <p><strong>Awards:</strong> {{ filmDetails.awards }}</p>
+      <p><strong>User Rating:</strong> {{ filmDetails.averageRating }}</p>
+      <!-- <p> <strong>Actors:</strong></p> 
+      <div class="actor-container" *ngFor="let actor of filmDetails.actorDto">
+        <div>
+          {{ actor.actorName }}
+          <p><i>{{actor.roleName}}</i></p>
+        </div>
+        <img [src]="actor.actorImg" alt="{{ actor.actorImg }}" class="small-rounded-image"/>
+      </div> -->
+    </div>
+    <app-table-projection-film-details></app-table-projection-film-details>
+  </div>
+
+  <br />
+
+  <div
+    class="card"
+    style="
+      max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    "
+  >
+    <div class="container-vertical-layout">
+      <br />
+      <h3 class="text-center" style="font-family: 'Bayon', sans-serif">
+        User reviews
+      </h3>
+      <div *ngFor="let fd of feedbackResult" class="review-list">
+        <ul>
+          <li>
+            <div class="d-flex">
+              <div class="left">
+                <span>
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
+                    class="profile-pict-img img-fluid"
+                    alt=""
+                  />
+                </span>
+              </div>
+              <div class="right">
+                <h4>
+                  <button
+                    class="btn btn-link"
+                    (click)="navigateToUserDetail(fd.userId)"
+                  >
+                    {{ fd.userName }}
+                  </button>
+                  <span class="gig-rating text-body-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 1792 1792"
+                      width="15"
+                      height="15"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                      ></path>
+                    </svg>
+                    {{ fd.rating }}
+                  </span>
+                </h4>
+                <div class="country d-flex align-items-center"></div>
+                <div class="review-description">
+                  <p>
+                    {{ fd.comment }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button
+          *ngIf="checkUser()"
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          Add a review
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <form
+        class="row g-3"
+        (ngSubmit)="createFeedback()"
+        [formGroup]="feedbackForm"
+      >
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasRight"
+          aria-labelledby="offcanvasRightLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Add a review</h5>
+            <button
+              type="button"
+              class="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating (1 to 10)</label>
+            <div class="input-group">
+              <input
+                type="number"
+                id="rating"
+                class="form-control"
+                formControlName="rating"
+                max="10"
+              />
+              <span class="input-group-text"
+                ><i class="bi bi-star-fill" style="color: goldenrod"></i
+              ></span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <input
+              type="text"
+              id="comment"
+              class="form-control"
+              formControlName="comment"
+            />
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">
+              Confirm your review
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

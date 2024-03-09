@@ -1,0 +1,29 @@
+.card-container {
+  display: flex;
+  width: 600px;
+  height: auto;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+label {
+  font-family: "Bayon", sans-serif;
+  font-size: 2rem;
+}
+
+input {
+  border: 2px solid black;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #f79420;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  border: 1px solid black;
+}

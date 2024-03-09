@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 class="text-center">ALL MOVIES</h2>
+    <div class="col-12">
+      <div class="d-flex flex-wrap justify-content-center">
+        <div
+          class="card mb-3 mx-2"
+          *ngFor="let film of allFilms"
+          style="max-width: 260px"
+        >
+          <img
+            [src]="film.posterImage"
+            (click)="navigateToFilmDetail(film.id)"
+            class="card-img-top"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

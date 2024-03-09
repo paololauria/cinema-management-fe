@@ -1,0 +1,75 @@
+.card-container {
+  padding: 30px;
+}
+
+.card {
+  border: 4px solid black;
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: 4px solid #e9993f;
+}
+
+#title,
+i {
+  font-size: 3rem;
+  font-family: "Protest Strike", sans-serif;
+}
+
+i {
+  color: #e9993f;
+}
+
+h2 {
+  color: #e9993f;
+  font-size: 90px;
+  font-family: "Bayon", sans-serif;
+}
+
+.card-title {
+  font-size: 1.9rem;
+  font-family: Protest Strike, sans-serif;
+}
+
+.star {
+  font-family: Protest Strike, sans-serif;
+  font-weight: 600;
+  margin-left: 200px;
+}
+
+.star2 {
+  margin-right: auto;
+}
+
+.strikethrough {
+  position: relative;
+}
+
+.strikethrough:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 90%;
+  right: 0;
+  border-top: 5px solid black !important;
+  border-color: inherit;
+}
+
+body {
+  background-color: #e6e7e8;
+  color: #000000;
+  margin-top: 3%;
+}
+
+.container {
+  background-color: #ffffff;
+  width: 75%;
+  padding: 1.5%;
+}
+
+h2 {
+  color: #f79420;
+  padding-bottom: 1.5%;
+}

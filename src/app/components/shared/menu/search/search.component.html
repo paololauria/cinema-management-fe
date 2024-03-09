@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="searchInput">
+    <form
+      [formGroup]="searchForm"
+      class="d-flex"
+      role="search"
+      (ngSubmit)="onSearchSubmit()"
+    >
+      <input
+        type="text"
+        placeholder="Search by Title"
+        formControlName="searchValue"
+        class="form-control me-2 searchBarInput"
+        (input)="searchSuggestions()"
+        id="searchInput"
+        style="font-size: 24px"
+      />
+    </form>
+    <div class="resultBox" *ngIf="suggestionsVisible">
+      <div *ngIf="suggestions.length > 0">
+        <ul>
+          <li *ngFor="let movie of suggestions" (click)="selectMovie(movie)">
+            <a
+              [routerLink]="['/films', movie.id]"
+              (click)="selectMovie(movie)"
+              >{{ movie.title }}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

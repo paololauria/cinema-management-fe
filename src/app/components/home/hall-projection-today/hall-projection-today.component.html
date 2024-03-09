@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 text-center">
+      <ng-container *ngIf="filmsProjectionToday.length > 0">
+        <h1 class="strikethrough">{{ filmsProjectionToday[0].hallName }}</h1>
+        <h3 class="cont">{{ currentDayAndDate }}</h3>
+      </ng-container>
+    </div>
+
+    <div class="d-flex overflow-auto">
+      <div
+        *ngFor="let projection of filmsProjectionToday"
+        class="col-md-4 mb-3 d-flex justify-content-center card-container"
+      >
+        <div class="card" (click)="navigateToProjectionDetail(projection.id)">
+          <img [src]="projection.posterImage" class="card-img-top" alt="" />
+          <div class="card-body">
+            <h5 class="card-title">{{ projection.filmTitle }}</h5>
+            <div class="star">
+              <p>
+                {{ projection.averageRating
+                }}<i
+                  class="bi bi-star-fill"
+                  style="color: orange; font-size: 17px"
+                ></i>
+              </p>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button
+                type="button"
+                class="btn btn-warning"
+                style="
+                  width: 200px;
+                  color: black;
+                  font-size: 30px;
+                  font-family: 'Protest Strike', sans-serif;
+                "
+              >
+                {{ projection.time }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

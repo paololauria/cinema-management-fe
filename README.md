@@ -1,27 +1,66 @@
-# CinemaManagementFe
+# Cinema Management System - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+## Introduction
 
-## Development server
+This repository encompasses the frontend for an all-encompassing cinema management system developed with Angular. The system empowers users to seamlessly view, book, and rate movies, while administrators can efficiently manage projections, films, and users.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Main Features
 
-## Code scaffolding
+1. **Authentication:**
+    - User-friendly login and registration functionalities.
+    - Access to diverse features with the ability to save preferences.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. **Movie Display:**
+    - Showcase movies available for the current day and week.
+    - Facilitate movie searches by genre and view them based on average user ratings.
 
-## Build
+3. **User Feedback Management:**
+    - Allow users to leave feedback and assign ratings to watched movies.
+    - Utilize feedback to calculate an average movie rating.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. **Projection and Movie Management:**
+    - Empower administrators to manage cinema projections, including creation, deletion, and modification.
+    - Streamline the management of the film inventory by adding new films, removing them, or modifying details.
 
-## Running unit tests
+5. **Reservation Management:**
+    - Enable users to book seats for available shows.
+    - Display reservations in the user profile with details about booked seats and show information.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+6. **User Profile Page:**
+    - Present personal information about the user, including name, surname, and date of birth.
+    - List reservations made by the user and published feedback for movies.
 
-## Running end-to-end tests
+7. **Admin Page:**
+    - Provide advanced functionalities for administrators to manage projections, films, and users.
+    - Allow administrators to create, delete, and modify projections and films, as well as manage user accounts.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+8. **Booking Page:**
+    - Allow users to view real-time seat availability for shows.
+    - Provide access to discounted seats for children under 12.
 
-## Further help
+## Technologies Used
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Database:** PostgreSQL with PGAdmin 4 for database management.
+- **Backend:** Java with the Spring framework, including Spring Security and Spring Data JPA for security and data management.
+- **Frontend:** Angular, utilizing Typescript, CSS, and HTML for creating user interfaces.
+
+## Installation & Set Up
+
+Follow these steps to install and set up the frontend:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/PaoloLauria/cinema-management-system-frontend.git
+   ```
+
+2. **Install Node Modules:**
+   - Navigate to the project's root directory containing the 'package.json' file.
+   - Run the following command to install the necessary Node modules:
+     ```bash
+     npm install
+     ```
+
+3. **Run the Application:**
+   - Execute the application using Angular CLI or any other tool of your choice.
+
+For the corresponding backend, refer to [Cinema Management System - Backend](https://github.com/PaoloLauria/cinema-management-system-backend).

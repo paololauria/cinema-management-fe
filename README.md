@@ -63,4 +63,4 @@ Follow these steps to install and set up the frontend:
 3. **Run the Application:**
    - Execute the application using Angular CLI or any other tool of your choice.
 
-For the corresponding backend, refer to [Cinema Management System - Backend](https://github.com/PaoloLauria/cinema-management-system-backend).
+For the corresponding backend, refer to [Cinema Management System - Backend](https://github.com/paoloLauria/cinema-management).
